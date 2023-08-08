@@ -1,0 +1,24 @@
+{
+  "name": "azurite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "marked": "node ./node_modules/marked/bin/marked",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luzefiru/azurite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Luzefiru/azurite/issues"
+  },
+  "homepage": "https://github.com/Luzefiru/azurite#readme",
+  "dependencies": {
+    "marked": "^7.0.1"
+  }
+}
