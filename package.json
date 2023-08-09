@@ -20,5 +20,9 @@
   "homepage": "https://github.com/Luzefiru/azurite#readme",
   "dependencies": {
     "marked": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/marked": "^5.0.1",
+    "tsc": "^2.0.4"
   }
 }
