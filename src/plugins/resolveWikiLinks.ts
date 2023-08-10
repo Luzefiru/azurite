@@ -2,9 +2,9 @@ import getFileList from '../lib/getFileList';
 import { destDir } from '../azurite.config.json';
 
 interface File {
-  title: string | null;
-  relativePath: string | null;
-  rawPath: string;
+  title: string | null; // title of the HTML page
+  relativePath: string | null; // path relative to destDir
+  rawPath: string; // full path in the format: {destDir}/*
 }
 
 /**
@@ -28,10 +28,16 @@ const getFileLocations = async (): Promise<File[]> => {
   });
 
   const filesWithPaths = files.map((rawPath, i) => {
-    return { title: titles[i], relativePath: relativePaths[i], rawPath };
+    return {
+      title: titles[i],
+      relativePath: encodeURIComponent(relativePaths[i] as string).replace(
+        /%2F/,
+        '/'
+      ),
+      rawPath,
+    };
   });
 
-  console.log(filesWithPaths);
   return filesWithPaths;
 };
 
@@ -43,7 +49,14 @@ const getFileLocations = async (): Promise<File[]> => {
  * `[[WikiLink|Label]] -> <a href="./WikiLink">Label</a>`
  */
 const resolveWikiLinks = (html: string): string => {
-  return html;
+  const regex = /\[\[([^\|\]]+)(?:\|([^\]]+))?\]\]/g; // matches [[Link|Label]]
+
+  return html.replace(regex, (match, link, label) => {
+    console.log(match, link, label);
+    const linkText = label || link;
+    const anchorTag = `<a href="./${link}">${linkText}</a>`;
+    return anchorTag;
+  });
 };
 
 export default resolveWikiLinks;
