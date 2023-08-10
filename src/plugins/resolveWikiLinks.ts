@@ -52,7 +52,7 @@ const resolveWikiLinks = (html: string): string => {
   return html.replace(wikiLinkRegEx, (match, link, label) => {
     const relativePath =
       filesWithMetadata.find((file) => file.title === link)?.relativePath ||
-      `/404.html`;
+      `404.html`;
 
     const linkText = label || link;
     const anchorTag = `<a href="${relativePath}">${linkText}</a>`;
