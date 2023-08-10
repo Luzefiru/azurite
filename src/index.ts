@@ -1,9 +1,9 @@
-import { readFileSync } from 'fs';
+import { readFileSync, rmSync } from 'fs';
 import lib from './lib';
+import { srcDir, destDir } from './azurite.config.json';
 
 (async function main() {
-  const srcDir = 'notes'; /* the directory of the .md files */
-  const destDir = 'dist'; /* the build directory for the .html files */
+  rmSync(destDir, { recursive: true });
   await buildHTML(srcDir, destDir);
 })();
 
