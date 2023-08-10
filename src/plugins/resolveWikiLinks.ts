@@ -31,7 +31,7 @@ const getFileLocations = (srcDir: string, destDir: string): File[] => {
       rawPath: rawPath,
     };
   });
-  console.log(filesWithPaths);
+  // console.log(filesWithPaths);
   return filesWithPaths;
 };
 
@@ -53,7 +53,6 @@ const resolveWikiLinks = (html: string): string => {
 
     const linkText = label || link;
     const anchorTag = `<a href="${relativePath}">${linkText}</a>`;
-    console.log(anchorTag);
     return anchorTag;
   });
 };
