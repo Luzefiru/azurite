@@ -1,5 +1,7 @@
 # azurite
 
+![](./assets/cover.png)
+
 Easily host Markdown Files in GitHub pages with plug-and-play parsing steps.
 
 ## Table of Contents
@@ -92,7 +94,7 @@ This `build/` directory is then automatically deployed using a GitHub Actions wo
 
 ## Known Issues
 
-- can't render images.
+- can't render images
 - bad UX
 
 ## Contributing
