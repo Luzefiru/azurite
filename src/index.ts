@@ -24,7 +24,6 @@ function buildHTML(srcDir: string, destDir: string, plugins?: Plugins): void {
 
     if (plugins) {
       html = applyPlugins(html, plugins);
-      console.log('pog');
     }
 
     const newFileName = fileName

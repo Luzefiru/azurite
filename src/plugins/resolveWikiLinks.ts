@@ -1,5 +1,5 @@
 import getFileList from '../lib/getFileList';
-import { srcDir } from '../azurite.config.json';
+import { srcDir, destDir } from '../azurite.config.json';
 
 interface File {
   title: string | null; // title of the HTML page
@@ -10,10 +10,10 @@ interface File {
 /**
  * Creates an array of File objects based on the stucture of the {dir}, relative to {dir}.
  */
-const getFileLocations = (dir: string): File[] => {
-  const files = getFileList(dir);
-  const titleRegEx = new RegExp(`${dir}\/([^/]+)\.md`, 'g'); // matches the TITLE in dir/[TITLE].html
-  const relativeRegEx = new RegExp(`${dir}\/([^/]+)`, 'g'); // matches the FILE in dir/[FILE]
+const getFileLocations = (srcDir: string, destDir: string): File[] => {
+  const files = getFileList(srcDir);
+  const titleRegEx = new RegExp(`([^/]+)\.md`, 'g'); // matches the TITLE in srcDir/[TITLE].md
+  const srcDirRegEx = new RegExp(`^${srcDir}\/`);
 
   const titles = files.map((str) => {
     titleRegEx.lastIndex = 0;
@@ -21,22 +21,17 @@ const getFileLocations = (dir: string): File[] => {
     return match ? match[1] : null;
   });
 
-  const relativePaths = files.map((str) => {
-    relativeRegEx.lastIndex = 0;
-    const match = relativeRegEx.exec(str);
-    return match ? `./${match[1]}` : null;
-  });
-
   const filesWithPaths = files.map((rawPath, i) => {
     return {
       title: titles[i],
-      relativePath: encodeURIComponent(relativePaths[i] as string)
-        .replace(/%2F/, '/')
+      relativePath: encodeURIComponent(rawPath)
+        .replace(/%2F/g, '/')
+        .replace(srcDirRegEx, `/${destDir}/`)
         .replace(/.md/, '.html'),
-      rawPath: rawPath.replace(/.md/, '.html'),
+      rawPath: rawPath,
     };
   });
-
+  console.log(filesWithPaths);
   return filesWithPaths;
 };
 
@@ -48,9 +43,8 @@ const getFileLocations = (dir: string): File[] => {
  * `[[WikiLink|Label]] -> <a href="./WikiLink">Label</a>`
  */
 const resolveWikiLinks = (html: string): string => {
-  console.log('exec');
   const regex = /\[\[([^\|\]]+)(?:\|([^\]]+))?\]\]/g; // matches [[Link|Label]]
-  const filesWithMetadata = getFileLocations(srcDir);
+  const filesWithMetadata = getFileLocations(srcDir, destDir);
 
   return html.replace(regex, (match, link, label) => {
     const relativePath =
