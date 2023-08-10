@@ -16,9 +16,9 @@ jobs:
         run: npm install
       - name: Build HTML
         run: npm run build
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages # you have to change pages branch to gh-pages after first workflow run
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Settings > Actions > General > Workflow Permissions > Read and write permissions set to true
+          publish_dir: build # must match destDir
