@@ -94,6 +94,8 @@ This `build/` directory is then automatically deployed using a GitHub Actions wo
 
 ## Known Issues
 
+- no user navigation menus or buttons
+- note template is hardcoded into plugin function when it should be its own static file
 - can't render images
 - bad UX
 
