@@ -1,4 +1,4 @@
-export type PluginFunction = (html: string) => string | Promise<string>;
+export type PluginFunction = (html: string) => string;
 
 export interface Plugins {
   [index: string]: PluginFunction;

@@ -1,5 +1,5 @@
 import getFileList from '../lib/getFileList';
-import { destDir } from '../azurite.config.json';
+import { srcDir } from '../azurite.config.json';
 
 interface File {
   title: string | null; // title of the HTML page
@@ -8,12 +8,12 @@ interface File {
 }
 
 /**
- * Creates an array of File objects.
+ * Creates an array of File objects based on the stucture of the {dir}, relative to {dir}.
  */
-const getFileLocations = async (): Promise<File[]> => {
-  const files = await getFileList(destDir);
-  const titleRegEx = new RegExp(`${destDir}\/([^/]+)\.html`, 'g'); // matches the TITLE in destDir/[TITLE].html
-  const relativeRegEx = new RegExp(`${destDir}\/([^/]+)`, 'g'); // matches the FILE in destDir/[FILE]
+const getFileLocations = (dir: string): File[] => {
+  const files = getFileList(dir);
+  const titleRegEx = new RegExp(`${dir}\/([^/]+)\.md`, 'g'); // matches the TITLE in dir/[TITLE].html
+  const relativeRegEx = new RegExp(`${dir}\/([^/]+)`, 'g'); // matches the FILE in dir/[FILE]
 
   const titles = files.map((str) => {
     titleRegEx.lastIndex = 0;
@@ -30,11 +30,10 @@ const getFileLocations = async (): Promise<File[]> => {
   const filesWithPaths = files.map((rawPath, i) => {
     return {
       title: titles[i],
-      relativePath: encodeURIComponent(relativePaths[i] as string).replace(
-        /%2F/,
-        '/'
-      ),
-      rawPath,
+      relativePath: encodeURIComponent(relativePaths[i] as string)
+        .replace(/%2F/, '/')
+        .replace(/.md/, '.html'),
+      rawPath: rawPath.replace(/.md/, '.html'),
     };
   });
 
@@ -49,12 +48,18 @@ const getFileLocations = async (): Promise<File[]> => {
  * `[[WikiLink|Label]] -> <a href="./WikiLink">Label</a>`
  */
 const resolveWikiLinks = (html: string): string => {
+  console.log('exec');
   const regex = /\[\[([^\|\]]+)(?:\|([^\]]+))?\]\]/g; // matches [[Link|Label]]
+  const filesWithMetadata = getFileLocations(srcDir);
 
   return html.replace(regex, (match, link, label) => {
-    console.log(match, link, label);
+    const relativePath =
+      filesWithMetadata.find((file) => file.title === link)?.relativePath ||
+      `/404.html`;
+
     const linkText = label || link;
-    const anchorTag = `<a href="./${link}">${linkText}</a>`;
+    const anchorTag = `<a href="${relativePath}">${linkText}</a>`;
+    console.log(anchorTag);
     return anchorTag;
   });
 };

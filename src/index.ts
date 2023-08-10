@@ -6,7 +6,7 @@ import { Plugins } from './types';
 
 (async function main() {
   removeDestinationDirectory(destDir);
-  await buildHTML(srcDir, destDir, plugins);
+  buildHTML(srcDir, destDir, plugins);
 })();
 
 /**
@@ -14,20 +14,17 @@ import { Plugins } from './types';
  *
  * Optionally, parses the outputted HTML with plugins.
  */
-async function buildHTML(
-  srcDir: string,
-  destDir: string,
-  plugins?: Plugins
-): Promise<void> {
-  const fileNameList = await lib.getFileList(srcDir);
+function buildHTML(srcDir: string, destDir: string, plugins?: Plugins): void {
+  const fileNameList = lib.getFileList(srcDir);
   const srcDirRegExp = new RegExp(`^${srcDir}`);
 
-  fileNameList.forEach(async (fileName) => {
+  fileNameList.forEach((fileName) => {
     const content = readFileSync(fileName, 'utf-8');
     let html = lib.parseMarkdownToHTML(content);
 
     if (plugins) {
-      html = await applyPlugins(html, plugins);
+      html = applyPlugins(html, plugins);
+      console.log('pog');
     }
 
     const newFileName = fileName
@@ -40,14 +37,11 @@ async function buildHTML(
 /**
  * Asynchronously applies all plugins in the {plugins} object to create {newHTML}.
  */
-async function applyPlugins(
-  oldHtml: string,
-  plugins: Plugins
-): Promise<string> {
+function applyPlugins(oldHtml: string, plugins: Plugins): string {
   const pluginNames = Object.keys(plugins);
   let newHTML = oldHtml;
-  pluginNames.forEach(async (name) => {
-    newHTML = await plugins[name](newHTML);
+  pluginNames.forEach((name) => {
+    newHTML = plugins[name](newHTML);
   });
 
   return newHTML;
