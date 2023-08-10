@@ -43,10 +43,10 @@ const getFileLocations = (srcDir: string, destDir: string): File[] => {
  * `[[WikiLink|Label]] -> <a href="./WikiLink">Label</a>`
  */
 const resolveWikiLinks = (html: string): string => {
-  const regex = /\[\[([^\|\]]+)(?:\|([^\]]+))?\]\]/g; // matches [[Link|Label]]
+  const wikiLinkRegEx = /\[\[([^\|\]]+)(?:\|([^\]]+))?\]\]/g; // matches [[Link|Label]]
   const filesWithMetadata = getFileLocations(srcDir, destDir);
 
-  return html.replace(regex, (match, link, label) => {
+  return html.replace(wikiLinkRegEx, (match, link, label) => {
     const relativePath =
       filesWithMetadata.find((file) => file.title === link)?.relativePath ||
       `/404.html`;
