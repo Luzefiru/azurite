@@ -1,5 +1,4 @@
 {
   "srcDir": "notes",
-  "destDir": "dist",
-  "pluginDir": "src/plugins"
+  "destDir": "dist"
 }

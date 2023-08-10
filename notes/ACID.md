@@ -5,7 +5,7 @@ alias: ACID Transaction, ACID Transactions
 Created: 2023-04-23 14:45
 Status: #concept
 Subject: [[Programming]] [[Web Development]] [[Data Science]]
-Tags: [[MongoDB]] [Database](/dist/Database)
+Tags: [[MongoDB]] [Database](./Database)
 
 # ACID
 
