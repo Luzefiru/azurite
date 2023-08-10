@@ -1,12 +1,13 @@
-import { readFileSync, rmSync } from 'fs';
+import { readFileSync, rmSync, cpSync } from 'fs';
 import lib from './lib';
 import plugins from './plugins';
-import { srcDir, destDir } from './azurite.config.json';
+import { srcDir, destDir, staticDir } from './azurite.config.json';
 import { Plugins } from './types';
 
 (async function main() {
-  removeDestinationDirectory(destDir);
-  buildHTML(srcDir, destDir, plugins);
+  removeDestinationDirectory(destDir); // initial clean-up
+  buildHTML(srcDir, destDir, plugins); // builds the HTML and applies src/plugins
+  copyStaticFiles(staticDir, destDir); // copies files from src/static
 })();
 
 /**
@@ -30,6 +31,17 @@ function buildHTML(srcDir: string, destDir: string, plugins?: Plugins): void {
       .replace(srcDirRegExp, destDir) // src/file.md -> dest/file.md
       .replace(/.md$/, '.html'); // dest/file.md -> dest/file.html
     lib.writeFileRecursive(newFileName, html);
+  });
+}
+
+/**
+ * Copies the files from {staticDir} into the {destDir} root.
+ */
+function copyStaticFiles(staticDir: string, destDir: string): void {
+  const fileNameList = lib.getFileList(staticDir);
+
+  fileNameList.forEach((file) => {
+    cpSync(file, file.replace(staticDir, destDir), { recursive: true });
   });
 }
 

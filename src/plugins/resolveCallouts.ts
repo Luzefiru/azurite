@@ -4,6 +4,9 @@
  * Example:
  *
  * `<p>[!info] ... </p>` -> `<p class="info"> ... </p>`.
+ *
+ * Dependencies:
+ *  - src/static/stylesheet.css file (optional)
  */
 const styleCallouts = (html: string): string => {
   const calloutRegEx = /\[!(\w+)\]([\s\S]*?)<\/p>/g;

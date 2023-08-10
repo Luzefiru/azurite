@@ -1,4 +1,5 @@
 {
   "srcDir": "notes",
-  "destDir": "dist"
+  "destDir": "build",
+  "staticDir": "src/static"
 }

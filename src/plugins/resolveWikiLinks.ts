@@ -41,10 +41,13 @@ const getFileLocations = (srcDir: string, destDir: string): File[] => {
  * Example:
  *
  * `[[WikiLink|Label]] -> <a href="./WikiLink">Label</a>`
+ *
+ * Dependencies:
+ *  - src/static/404.html file
  */
+const filesWithMetadata = getFileLocations(srcDir, destDir);
 const resolveWikiLinks = (html: string): string => {
   const wikiLinkRegEx = /\[\[([^\|\]]+)(?:\|([^\]]+))?\]\]/g; // matches [[Link|Label]]
-  const filesWithMetadata = getFileLocations(srcDir, destDir);
 
   return html.replace(wikiLinkRegEx, (match, link, label) => {
     const relativePath =
