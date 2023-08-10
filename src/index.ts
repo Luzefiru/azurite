@@ -34,7 +34,7 @@ function buildHTML(srcDir: string, destDir: string, plugins?: Plugins): void {
 }
 
 /**
- * Asynchronously applies all plugins in the {plugins} object to create {newHTML}.
+ * Applies all plugins in the {plugins} object to create {newHTML}.
  */
 function applyPlugins(oldHtml: string, plugins: Plugins): string {
   const pluginNames = Object.keys(plugins);
