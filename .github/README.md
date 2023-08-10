@@ -4,7 +4,7 @@
 
 Easily host Markdown Files in GitHub pages with plug-and-play parsing steps.
 
-## Table of Contents
+# Table of Contents
 
 - [Usage](https://github.com/Luzefiru/azurite/tree/main#usage)
   - [Hosting](https://github.com/Luzefiru/azurite/tree/main#hosting)
@@ -15,7 +15,7 @@ Easily host Markdown Files in GitHub pages with plug-and-play parsing steps.
 - [Known Issues](https://github.com/Luzefiru/azurite/tree/main#known-issues)
 - [Contributing](https://github.com/Luzefiru/azurite/tree/main#contributing)
 
-## Usage
+# Usage
 
 If you are simply looking for a solution to host your Obsidian notes as fast as possible, follow the [Hosting Setup](https://github.com/Luzefiru/azurite/tree/main#hosting).
 
@@ -68,7 +68,7 @@ npm run build # builds your srcDir to the destDir and copies files from staticDi
 ├── tsconfig.json
 ```
 
-## How It Works
+# How It Works
 
 The `src/index.ts` program is run when you do `npm run build`. It builds the Markdown files in the `azurite.config.json` `srcDir` into `destDir` and copies the static files inside `staticDir` to `destDir`.
 
@@ -85,20 +85,20 @@ The output should be a `build/` directory (by default) with all the HTML files a
 
 This `build/` directory is then automatically deployed using a GitHub Actions workflow found in `.github/workflows/CD.yml` which publishes the `publish_dir` (set to `build`) by default.
 
-## Tips for Customizing the Build Process
+# Tips for Customizing the Build Process
 
 - Better to not mess with the `azurite.config.json` file and the default directories.
 - Easily customize the `404.html`, `index.html`, and `stylesheet.css` files in the `src/static/` directory.
 - Add or remove your plugins & export them inside `src/plugins/index.ts`.
 - Customize the `.github/workflows/CD.yml` file to do your own deployment or build strategy.
 
-## Known Issues
+# Known Issues
 
 - no user navigation menus or buttons
 - note template is hardcoded into plugin function when it should be its own static file
 - can't render images
 - bad UX
 
-## Contributing
+# Contributing
 
 Feel free to contribute by making a pull request or raising an issue.
