@@ -3,7 +3,7 @@ import lib from './lib';
 import { srcDir, destDir } from './azurite.config.json';
 
 (async function main() {
-  rmSync(destDir, { recursive: true });
+  removeDestinationDirectory(destDir);
   await buildHTML(srcDir, destDir);
 })();
 
@@ -24,4 +24,19 @@ async function buildHTML(srcDir: string, destDir: string): Promise<void> {
       .replace(/.md$/, '.html'); // dest/file.md -> dest/file.html
     lib.writeFileRecursive(newFileName, html);
   });
+}
+
+/**
+ * Removes the destDir to rebuild the .html files and handles any errors.
+ */
+function removeDestinationDirectory(destDir: string): void {
+  try {
+    rmSync(destDir, { recursive: true });
+  } catch (err: any) {
+    if (err.code == 'ENOENT') {
+      // creating new destDir
+    } else {
+      throw err;
+    }
+  }
 }
