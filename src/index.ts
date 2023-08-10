@@ -2,7 +2,7 @@ import { readFileSync, rmSync } from 'fs';
 import lib from './lib';
 import plugins from './plugins';
 import { srcDir, destDir } from './azurite.config.json';
-import { PluginFunction, Plugins } from './types';
+import { Plugins } from './types';
 
 (async function main() {
   removeDestinationDirectory(destDir);
@@ -22,15 +22,12 @@ async function buildHTML(
   const fileNameList = await lib.getFileList(srcDir);
   const srcDirRegExp = new RegExp(`^${srcDir}`);
 
-  fileNameList.forEach((fileName) => {
+  fileNameList.forEach(async (fileName) => {
     const content = readFileSync(fileName, 'utf-8');
     let html = lib.parseMarkdownToHTML(content);
 
     if (plugins) {
-      const pluginNames = Object.keys(plugins);
-      pluginNames.forEach((name) => {
-        html = plugins[name](html);
-      });
+      html = await applyPlugins(html, plugins);
     }
 
     const newFileName = fileName
@@ -41,7 +38,23 @@ async function buildHTML(
 }
 
 /**
- * Removes the destDir to rebuild the .html files and handles any errors.
+ * Asynchronously applies all plugins in the {plugins} object to create {newHTML}.
+ */
+async function applyPlugins(
+  oldHtml: string,
+  plugins: Plugins
+): Promise<string> {
+  const pluginNames = Object.keys(plugins);
+  let newHTML = oldHtml;
+  pluginNames.forEach(async (name) => {
+    newHTML = await plugins[name](newHTML);
+  });
+
+  return newHTML;
+}
+
+/**
+ * Removes the {destDir} to rebuild the HTML files and handles any errors.
  */
 function removeDestinationDirectory(destDir: string): void {
   try {

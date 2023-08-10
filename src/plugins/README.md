@@ -2,9 +2,9 @@
 
 Plugins act as the final parsers after the raw markdown is compiled into HTML.
 
-Plugins must:
+Plugins are:
 
-- be functions with this signature: `(html: string) => string`.
+- functions with this signature: `(html: string) => Promise<string> | string`.
 
 # Example
 
