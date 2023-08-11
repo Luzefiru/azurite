@@ -3,10 +3,10 @@ layout: metadata.njk
 ---
 
 <header>
-  <img src="{{assets}}/logo.svg" alt="Homepage" />
+  <img src="{{ 'static/assets/logo.svg' | url }}" alt="Homepage" />
   <nav>
     <ul>
-      <li><a href="{{baseURL}}/">Home</a></li>
+      <li><a href="{{ '/' | url }}">Home</a></li>
     </ul>
   </nav>
 </header>

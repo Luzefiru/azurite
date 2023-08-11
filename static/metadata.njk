@@ -1,5 +1,4 @@
 ---
-title: Azurite
 permalink: "/{{ page.fileSlug | slugify }}.html"
 ---
 
@@ -8,7 +7,7 @@ permalink: "/{{ page.fileSlug | slugify }}.html"
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>{{ content | extractFirstH1Text }}</title>
   </head>
   <body>
     {{ content | safe }}
