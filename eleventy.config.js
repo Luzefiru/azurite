@@ -1,5 +1,7 @@
 const baseURL = '/azurite/'; // change this for GitHub pages deployment based on your repository name
 
+const { cpSync } = require('fs');
+const { join } = require('path');
 const wikilinksPlugin = require('markdown-it-wikilinks')({
   baseURL,
 });
@@ -9,8 +11,17 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.amendLibrary('md', (mdLib) => mdLib.use(wikilinksPlugin));
   /* global YAML front matter keys */
   eleventyConfig.addGlobalData('layout', 'layout.njk');
-  /* copy files to _site */
-  eleventyConfig.addPassthroughCopy({ 'static/404.html': '404.html' });
+  /* copy pages to be parsed to _site */
+  cpSync(
+    join(__dirname, 'static/pages/404.html'),
+    join(__dirname, 'notes/404.html'),
+    { force: true }
+  );
+  cpSync(
+    join(__dirname, 'static/pages/index.html'),
+    join(__dirname, 'notes/index.html'),
+    { force: true }
+  );
   return {
     dir: {
       input: 'notes',
