@@ -11,7 +11,7 @@ layout: metadata.njk
   </nav>
 </header>
 <main>
-  {{ content | safe }}
+  {{ content | removeTextBeforeFirstH1 | resolveCallouts | safe  }}
 </main>
 
 <style>

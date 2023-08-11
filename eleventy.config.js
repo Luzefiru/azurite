@@ -7,6 +7,8 @@ const sanitize = require('sanitize-filename');
 /**
  * Resolves WikiLinks to slugged anchor tags.
  *
+ * Example:
+ *
  * [[Linked Page]] -> <a href="/linked-page" />
  */
 function slugifyLink(pageName) {
@@ -29,6 +31,34 @@ function extractFirstH1Text(content) {
   } else {
     return 'Untitled Note';
   }
+}
+
+/**
+ * 11ty custom filter to add the callout's name as a class the <div> tag of the callout for styling.
+ *
+ * Example:
+ *
+ * `[!info] ...` -> `<div class="info"> ... </div>`.
+ */
+function resolveCallouts(content) {
+  const calloutRegEx = /\[!(\w+)\]([\s\S]*?)<\/p>/g;
+
+  // Replace the callout tags with modified <p> tags
+  const modifiedContent = content.replace(
+    calloutRegEx,
+    (match, calloutName, content) => {
+      return `<p class="${calloutName}">${content}</p>`;
+    }
+  );
+
+  return modifiedContent;
+}
+
+/**
+ * Removes all the text before the first <h1> tag.
+ */
+function removeTextBeforeFirstH1(content) {
+  return content.replace(/^(.*?)(?=<h1>)/s, '');
 }
 
 /**
@@ -62,6 +92,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('static/assets/**/*');
   /* custom filters */
   eleventyConfig.addFilter('extractFirstH1Text', extractFirstH1Text);
+  eleventyConfig.addFilter('resolveCallouts', resolveCallouts);
+  eleventyConfig.addFilter('removeTextBeforeFirstH1', removeTextBeforeFirstH1);
   /* copy pages to be parsed to _site */
   eleventyConfig.addWatchTarget('static');
   precompileSteps();
