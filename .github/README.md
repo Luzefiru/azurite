@@ -57,7 +57,7 @@ npm run serve # your site is hosted on http://localhost:8080/azurite/ by default
 
 ```
 .
-├── notes/                    # Default source directory of .md note files for building
+├── notes/              # Default source directory of .md note files for building
 │
 ├── static
 │   │── assets/         # Files that are copied to the _site directory that can be accessed with {{assets}}/
@@ -72,7 +72,7 @@ npm run serve # your site is hosted on http://localhost:8080/azurite/ by default
 
 - can't render images
 - bad UX
-- can't render `[!callout]` blockquotes.
+- can't render `[!callout]` blockquotes
 - all nested files inside `notes/` will be parsed into root of `_site`, meaning no nested directories
 
 # Contributing
