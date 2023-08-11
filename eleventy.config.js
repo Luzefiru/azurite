@@ -5,12 +5,17 @@ const wikilinksPlugin = require('markdown-it-wikilinks')({
 });
 
 module.exports = function (eleventyConfig) {
+  /* plugins */
   eleventyConfig.amendLibrary('md', (mdLib) => mdLib.use(wikilinksPlugin));
+  /* global YAML front matter keys */
+  eleventyConfig.addGlobalData('layout', 'layout.njk');
+  /* copy files to _site */
+  eleventyConfig.addPassthroughCopy({ 'static/404.html': '404.html' });
   return {
     dir: {
       input: 'notes',
       output: '_site',
-      includes: '_includes',
+      includes: '../static',
     },
     markdownTemplateEngine: 'liquid', // template engine for Markdown
     templateFormats: ['html', 'liquid', 'md'],
