@@ -1,11 +1,11 @@
 {
   "name": "azurite",
   "version": "1.0.0",
-  "description": "A highly customizable Markdown to HTML build framework.",
+  "description": "Easily host Obsidian notes with 11ty.",
   "main": "src/index.js",
   "scripts": {
-    "marked": "node ./node_modules/marked/bin/marked",
-    "build": "ts-node ./src/index.ts"
+    "build": "node node_modules/@11ty/eleventy/cmd.js",
+    "serve": "node node_modules/@11ty/eleventy/cmd.js --serve"
   },
   "repository": {
     "type": "git",
@@ -18,13 +18,10 @@
     "url": "https://github.com/Luzefiru/azurite/issues"
   },
   "homepage": "https://github.com/Luzefiru/azurite#readme",
-  "dependencies": {
-    "marked": "^7.0.1"
-  },
   "devDependencies": {
-    "@types/marked": "^5.0.1",
-    "node": "^20.5.0",
-    "ts-node": "^10.9.1",
-    "tsc": "^2.0.4"
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "dependencies": {
+    "markdown-it-wikilinks": "^1.3.0"
   }
 }

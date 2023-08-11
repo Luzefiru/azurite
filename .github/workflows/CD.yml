@@ -21,4 +21,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }} # Settings > Actions > General > Workflow Permissions > Read and write permissions set to true
-          publish_dir: build # must match destDir
+          publish_dir: _site # the folder to deploy on gh-pages
