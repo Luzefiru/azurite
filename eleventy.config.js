@@ -12,6 +12,7 @@ module.exports = function (eleventyConfig) {
   /* global YAML front matter keys */
   eleventyConfig.addGlobalData('layout', 'layout.njk');
   /* copy pages to be parsed to _site */
+  eleventyConfig.addWatchTarget('static');
   cpSync(
     join(__dirname, 'static/pages/404.html'),
     join(__dirname, 'notes/404.html'),
