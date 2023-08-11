@@ -1,9 +1,21 @@
-const baseURL = '/azurite/'; // change this for GitHub pages deployment based on your repository name
+const baseURL = '/azurite'; // change this for GitHub pages deployment based on your repository name
+
+/* [[Linked Page]] -> <a href="/linked-page" /> */
+const sanitize = require('sanitize-filename');
+const slugifyLink = (pageName) => {
+  pageName = pageName.trim();
+  pageName = pageName.split('/').map(sanitize).join('/');
+  pageName = pageName.replace(/\s+/g, '-');
+  pageName = pageName.toLowerCase();
+  return pageName;
+};
 
 const { cpSync } = require('fs');
 const { join } = require('path');
 const wikilinksPlugin = require('markdown-it-wikilinks')({
-  baseURL,
+  baseURL: `${baseURL}/`,
+  uriSuffix: '',
+  postProcessPageName: slugifyLink,
 });
 
 module.exports = function (eleventyConfig) {
@@ -12,7 +24,7 @@ module.exports = function (eleventyConfig) {
   /* global YAML front matter keys */
   eleventyConfig.addGlobalData('layout', 'layout.njk');
   eleventyConfig.addGlobalData('baseURL', baseURL);
-  eleventyConfig.addGlobalData('assets', `${baseURL}/static/assets/`);
+  eleventyConfig.addGlobalData('assets', `${baseURL}/static/assets`);
   /* copy files to _site */
   eleventyConfig.addPassthroughCopy('static/assets/**/*');
   /* copy pages to be parsed to _site */
@@ -35,6 +47,6 @@ module.exports = function (eleventyConfig) {
     },
     markdownTemplateEngine: 'liquid', // template engine for Markdown
     templateFormats: ['html', 'liquid', 'md'],
-    pathPrefix: baseURL, // must use in GitHub Pages
+    pathPrefix: `${baseURL}/`, // must use in GitHub Pages
   };
 };
