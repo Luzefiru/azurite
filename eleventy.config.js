@@ -14,7 +14,7 @@ const { cpSync } = require('fs');
 const { join } = require('path');
 const wikilinksPlugin = require('markdown-it-wikilinks')({
   baseURL: `${baseURL}/`,
-  uriSuffix: '',
+  uriSuffix: '.html',
   postProcessPageName: slugifyLink,
 });
 
