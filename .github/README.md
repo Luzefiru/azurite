@@ -2,7 +2,9 @@
 
 ![](./assets/cover.png)
 
-Easily host Markdown Files in GitHub pages with plug-and-play parsing steps.
+Simply drag & drop all your notes into the `notes/` directory and push it to your own GitHub repository to automatically trigger a GitHub Actions workflow to pulish your notes to GitHub Pages.
+
+Easily customize the stylesheet theme in the `static/css/bundle.css` file.
 
 # Table of Contents
 
@@ -10,8 +12,6 @@ Easily host Markdown Files in GitHub pages with plug-and-play parsing steps.
   - [Hosting](https://github.com/Luzefiru/azurite/tree/main#hosting)
   - [Development](https://github.com/Luzefiru/azurite/tree/main#hosting)
 - [Project Structure](https://github.com/Luzefiru/azurite/tree/main#project-structure)
-- [How It Works](https://github.com/Luzefiru/azurite/tree/main#how-it-works)
-  - [Tips for Customizing the Build Process](https://github.com/Luzefiru/azurite/tree/main#tips-for-customizing-the-build-process)
 - [Known Issues](https://github.com/Luzefiru/azurite/tree/main#known-issues)
 - [Contributing](https://github.com/Luzefiru/azurite/tree/main#contributing)
 
