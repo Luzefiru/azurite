@@ -11,6 +11,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.amendLibrary('md', (mdLib) => mdLib.use(wikilinksPlugin));
   /* global YAML front matter keys */
   eleventyConfig.addGlobalData('layout', 'layout.njk');
+  eleventyConfig.addGlobalData('baseURL', baseURL);
   eleventyConfig.addGlobalData('assets', `${baseURL}/static/assets/`);
   /* copy files to _site */
   eleventyConfig.addPassthroughCopy('static/assets/**/*');
