@@ -1,19 +1,41 @@
 ---
-title: Azurite
+layout: metadata.njk
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    {{ content | safe }}
-  </body>
+<header>
+  <img src="{{assets}}/logo.svg" alt="Homepage" />
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  {{ content | safe }}
+</main>
 
-  <style>
-    {% include "css/bundle.css" %}
-  </style>
-</html>
+<style>
+  header {
+    height: 60px;
+    position: sticky;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5em;
+    box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    gap: 2em;
+  }
+
+  header img {
+    height: 60%;
+  }
+
+  header ul {
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 1.2rem;
+    font-family: 'Avenir Next', Helvetica, Arial, sans-serif;
+  }
+</style>
