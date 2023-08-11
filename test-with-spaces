@@ -9,7 +9,7 @@
   <body>
     
 <header>
-  <img src="/azurite//static/assets//logo.svg" alt="Homepage" />
+  <img src="/azurite/static/assets/logo.svg" alt="Homepage" />
   <nav>
     <ul>
       <li><a href="/azurite/">Home</a></li>
@@ -17,37 +17,8 @@
   </nav>
 </header>
 <main>
-  <p>Created: 2023-04-23 14:45
-Status: #concept
-Subject: <a href="./Programming.html">Programming</a> <a href="./Web_Development.html">Web Development</a> <a href="./Data_Science.html">Data Science</a>
-Tags: <a href="./MongoDB.html">MongoDB</a> <a href="./Database.html">Database</a></p>
-<h1>ACID</h1>
-<blockquote>
-<p>[!info] An ACID Transaction is a group of <a href="./Database.html">Database</a> operations that <em>either</em> happen <strong>all-together</strong> <em>or</em> <strong>none at all</strong>.</p>
-<ul>
-<li>ensures integrity and consistency of <a href="./Data.html">Data</a>, like cross-bank transactions.</li>
-</ul>
-</blockquote>
-<h2>Atomicity</h2>
-<blockquote>
-<p>[!quote] <strong>ALL</strong> operations either; <em>succeed or fail together</em>.</p>
-</blockquote>
-<h2>Consistency</h2>
-<blockquote>
-<p>[!quote] Changes made by operations are <strong><em>consistent with the <a href="./Database.html">Database</a> <a href="./Constraint.html">Constraint</a>s</em></strong>.</p>
-</blockquote>
-<h2>Isolation</h2>
-<blockquote>
-<p>[!quote] Multiple transactions <em>can happen at the same time without affecting the outcome of other</em> transactions.</p>
-</blockquote>
-<h2>Durability</h2>
-<blockquote>
-<p>[!quote] <strong><em>Changes made by operations in a transaction will persist</em></strong>, no matter what.</p>
-</blockquote>
-<h1>References</h1>
-<ul>
-<li></li>
-</ul>
+  <h1>My URL should be /azurite/test-with-spaces</h1>
+<p>This is to test my <code>eleventy.config.js</code>'s <code>postProcessPageName</code> transform function to standardize and slugify my page URLs.</p>
 
 </main>
 

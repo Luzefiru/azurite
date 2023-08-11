@@ -17,19 +17,9 @@
   </nav>
 </header>
 <main>
-  
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Azurite</title>
-  </head>
-  <body>
-    <h1>Azurite</h1>
-    <p>A drag & drop Obsidian notes hosting framework on GitHub pages.</p>
-  </body>
-</html>
+  <h1>My URL should be /azurite/nested/test-with-spaces</h1>
+<p>This is to test my <code>eleventy.config.js</code>'s <code>postProcessPageName</code> transform function to standardize and slugify my page URLs.</p>
+<p><a href="./double-space">double  space</a></p>
 
 </main>
 

@@ -9,7 +9,7 @@
   <body>
     
 <header>
-  <img src="/azurite//static/assets//logo.svg" alt="Homepage" />
+  <img src="/azurite/static/assets/logo.svg" alt="Homepage" />
   <nav>
     <ul>
       <li><a href="/azurite/">Home</a></li>
@@ -17,59 +17,8 @@
   </nav>
 </header>
 <main>
-  <p>Created: 2023-03-15 18:41
-Status: #concept
-Subject: <a href="./CIS1204_-_Information_Management_I.html">CIS1204 - Information Management I</a> <a href="./Programming.html">Programming</a>
-Tags: <a href="./Data.html">Data</a> <a href="./Data_Warehouse.html">Data Warehouse</a> <a href="./Data_Lake.html">Data Lake</a></p>
-<h1>Database</h1>
-<blockquote>
-<p>[!info] Organized collection of logically related <a href="./Data.html">Data</a>.</p>
-<ul>
-<li>central repository of shared data.</li>
-<li>data is managed by a controlling agent, typically a <a href="./Database_Administrator.html">Database Administrator</a>.</li>
-<li>stored in a standardized, convenient form.</li>
-</ul>
-<blockquote>
-<p>[!caution] Requires a <a href="./Database_Management_System.html">Database Management System</a>.</p>
-</blockquote>
-</blockquote>
-<h2>Pros &amp; Cons of the Database Approach</h2>
-<p><strong>PROS</strong></p>
-<ul>
-<li>Planned data <a href="./Redundancy.html">Redundancy</a></li>
-<li>Improved data consistency</li>
-<li>Improved data sharing.</li>
-<li>Enforced standards.</li>
-<li>Improved data quality.</li>
-<li>Improved <a href="./Data-Driven_Decision_Making.html">Data-Driven Decision Making</a></li>
-</ul>
-<p><strong>CONS</strong></p>
-<ul>
-<li>new specialized personnel</li>
-<li>installation and management cost and complexity</li>
-<li><a href="./Data_Migration.html">Data Migration</a> costs</li>
-<li>need for <a href="./Backup.html">Backup</a> and Recovery</li>
-<li><a href="./Data_Management.html">Data Management</a> requirements for data definitions, formats, coding, and rights to update.</li>
-</ul>
-<h2>Two Approaches to Database Development</h2>
-<p><strong><a href="./Software_Development_Life_Cycle.html">Software Development Life Cycle</a></strong></p>
-<ul>
-<li>detailed, well-planned development process</li>
-<li>time-consuming, but comprehensive</li>
-<li>long development cycle</li>
-</ul>
-<p>Prototyping</p>
-<ul>
-<li><a href="./Rapid_Application_Development.html">Rapid Application Development</a></li>
-<li>an <a href="./Agile.html">Agile</a> development <a href="./Framework.html">Framework</a> for fast iterative prototypes</li>
-<li>quick conceptual data modeling</li>
-<li>definition of database during development of prototype</li>
-<li>repeat implementation and maintenance activities with new prototypes</li>
-</ul>
-<h1>References</h1>
-<ul>
-<li></li>
-</ul>
+  <h1>test</h1>
+<p>Just a normal file.</p>
 
 </main>
 
