@@ -2,6 +2,8 @@
 
 ![](./assets/cover.png)
 
+> WARNING: Archived in favor of [emanote](https://github.com/srid/emanote).
+
 Simply drag & drop all your notes into the `notes/` directory and push it to your own GitHub repository to automatically trigger a GitHub Actions workflow to pulish your notes to GitHub Pages.
 
 Easily customize the stylesheet theme in the `static/css/bundle.css` file.
