@@ -77,6 +77,13 @@ function precompileSteps() {
   );
 }
 
+/**
+ * Resolves [[WikiLinks]] to anchor tags.
+ *
+ * Example:
+ *
+ * [[A Cool Note]] -> ${baseURL}/a-cool-note.html
+ */
 const wikilinksPlugin = require('markdown-it-wikilinks')({
   baseURL: `${baseURL}/`,
   uriSuffix: '.html',
@@ -84,18 +91,18 @@ const wikilinksPlugin = require('markdown-it-wikilinks')({
 });
 
 module.exports = function (eleventyConfig) {
-  /* plugins */
+  /* markdown-it plugins */
   eleventyConfig.amendLibrary('md', (mdLib) => mdLib.use(wikilinksPlugin));
   /* global YAML front matter keys */
   eleventyConfig.addGlobalData('layout', 'layout.njk');
-  /* copy files to _site */
-  eleventyConfig.addPassthroughCopy('static/assets/**/*');
   /* custom filters */
   eleventyConfig.addFilter('extractFirstH1Text', extractFirstH1Text);
   eleventyConfig.addFilter('resolveCallouts', resolveCallouts);
   eleventyConfig.addFilter('removeTextBeforeFirstH1', removeTextBeforeFirstH1);
-  /* copy pages to be parsed to _site */
+  /* copy pages notes/ for parsing */
   eleventyConfig.addWatchTarget('static');
+  /* copy files to _site */
+  eleventyConfig.addPassthroughCopy('static/assets/**/*');
   precompileSteps();
   return {
     dir: {

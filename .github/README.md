@@ -68,12 +68,16 @@ npm run serve # your site is hosted on http://localhost:8080/azurite/ by default
 ├── eleventy.config.js  # 11ty configuration, change the settings here
 ```
 
-# Known Issues/Constraints
+# Constraints
 
 - can't render images
-- bad UX
-- can't render `[!callout]` blockquotes
 - all nested files inside `notes/` will be parsed into root of `_site`, meaning no nested directories
+
+# TODO
+
+- add table of contents
+- add a proper navigation bar
+- improve the default theme
 
 # Contributing
 
